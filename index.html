@@ -2,151 +2,139 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>sikonrmnv</title>  <style>
-    * { box-sizing: border-box; }
-
+  <title>Vibra</title>
+  <style>
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0b0b0f;
-      color: #e5e7eb;
+      background: #050505;
+      color: #f1f1f1;
       overflow-x: hidden;
-    }
+    }header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(circle at top, #1f2933, #000);
+  padding: 24px;
+  animation: fadeIn 1.2s ease;
+}
 
-    header {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: radial-gradient(circle at top, #1f2933, #020617);
-      padding: 32px;
-      animation: fadeIn 1.2s ease;
-    }
+h1 {
+  font-size: 3rem;
+  margin: 0;
+  letter-spacing: 2px;
+}
 
-    h1 {
-      font-size: 3rem;
-      margin: 0;
-      letter-spacing: 1px;
-    }
+p {
+  opacity: .85;
+  max-width: 520px;
+}
 
-    header p {
-      max-width: 500px;
-      opacity: 0.8;
-      margin-top: 12px;
-    }
+.btn {
+  margin-top: 24px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff2f92, #7c3aed);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+}
 
-    .buttons {
-      margin-top: 32px;
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+section {
+  padding: 64px 20px;
+  max-width: 1100px;
+  margin: auto;
+  animation: slideUp .9s ease;
+}
 
-    a.button {
-      padding: 14px 24px;
-      border-radius: 16px;
-      text-decoration: none;
-      font-weight: 600;
-      color: white;
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
 
-    a.button:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 10px 30px rgba(0,0,0,.4);
-    }
+.gallery img {
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0,0,0,.5);
+  transition: transform .4s ease;
+}
 
-    .ig {
-      background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
-    }
+.gallery img:hover {
+  transform: scale(1.05);
+}
 
-    .down {
-      background: #22c55e;
-      color: #020617;
-    }
+.controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+}
 
-    section {
-      max-width: 900px;
-      margin: auto;
-      padding: 80px 24px;
-    }
+.control-btn {
+  padding: 14px;
+  border-radius: 50%;
+  background: #111;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,.6);
+}
 
-    h2 {
-      margin-top: 0;
-      font-size: 2rem;
-    }
+footer {
+  text-align: center;
+  padding: 32px;
+  opacity: .5;
+  font-size: .9rem;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 32px;
-    }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
-    .card {
-      background: #020617;
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: 0 10px 40px rgba(0,0,0,.5);
-      transition: transform .25s ease;
-    }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    .card:hover {
-      transform: translateY(-6px);
-    }
+  </style>
+</head>
+<body><header>
+  <h1>VIBRA</h1>
+  <p>Akış hissi, meme ruhu, sıfır kasma. Uygulama gibi site.</p>
+  <a class="btn" href="https://instagram.com/sikonrmnv" target="_blank">Instagram</a>
+</header><section>
+  <h2>Vibe Gallery</h2>
+  <div class="gallery">
+    <img src="kedi.jpg" alt="meme" />
+    <img src="canim-sikildi.jpg" alt="mood" />
+  </div>
+</section><section>
+  <h2>İletişim</h2>
+  <a class="btn" href="https://wa.me/905575066682" target="_blank">WhatsApp'tan Yaz</a>
+</section><audio id="bgm" src="mentirao-slowed.mp3" loop></audio>
 
-    footer {
-      text-align: center;
-      padding: 32px;
-      opacity: .6;
-      font-size: .9rem;
-    }
+<div class="controls">
+  <div class="control-btn" onclick="toggleMusic()">▶️</div>
+</div><footer>
+  © 2025 Vibra
+</footer><script>
+  const music = document.getElementById('bgm');
+  let playing = false;
 
-    audio {
-      display: none;
+  function toggleMusic() {
+    if (!playing) {
+      music.play();
+    } else {
+      music.pause();
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style></head>
-<body>  <audio id="music" loop>
-    <source src="mentirao-slowed.mp3" type="audio/mpeg">
-  </audio>  <header>
-    <h1>sikonrmnv</h1>
-    <p>Instagram, TikTok falan gördük. Daha akıcı, daha temiz, daha az sinir bozucu bir şey deniyoruz.</p><div class="buttons">
-  <a class="button ig" href="https://instagram.com/sikonrmnv" target="_blank">Instagram</a>
-  <a class="button down" href="#" onclick="toggleMusic()">Müziği Aç / Kapat</a>
-</div>
-
-  </header>  <section>
-    <h2>Ne Var Burada</h2>
-    <div class="cards">
-      <div class="card">Akıcı geçişler<br/>Takılma yok, donma yok.</div>
-      <div class="card">Mobil odaklı<br/>PC umurumuzda değil.</div>
-      <div class="card">Uygulama hissi<br/>Site ama uygulama gibi.</div>
-    </div>
-  </section>  <section>
-    <h2>Plan</h2>
-    <p>Bu yapı ileride uygulamaya da döner. Önce sade, sonra özellik. Eski usul ama ileri görüşlü.</p>
-  </section>  <footer>
-    © 2025 sikonrmnv
-  </footer>  <script>
-    const music = document.getElementById('music');
-    let playing = false;
-
-    function toggleMusic() {
-      if (!playing) {
-        music.play();
-        playing = true;
-      } else {
-        music.pause();
-        playing = false;
-      }
-    }
-  </script></body>
+    playing = !playing;
+  }
+</script></body>
 </html>
