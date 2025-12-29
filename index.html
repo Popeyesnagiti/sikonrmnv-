@@ -1,79 +1,152 @@
 <!DOCTYPE html><html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>sikonrmnv</title>
-  <style>
-    body { margin:0; font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; background: #0f172a; color:#e5e7eb; scroll-behavior:smooth; }
-    header { text-align:center; padding:64px 24px; background: linear-gradient(135deg,#22c55e,#3b82f6); color:#020617; position:relative; overflow:hidden; }
-    header::before { content:''; position:absolute; top:0; left:-50%; width:200%; height:100%; background: url('https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif') center/cover no-repeat; opacity:0.1; transform:rotate(15deg); }
-    h1 { font-size:3rem; margin:0; z-index:1; position:relative; }
-    header p { z-index:1; position:relative; }
-    a.button { display:inline-flex; align-items:center; gap:10px; margin-top:18px; padding:14px 22px; background:#22c55e; color:#020617; border-radius:999px; text-decoration:none; font-weight:700; transition:transform .15s ease, box-shadow .15s ease; box-shadow:0 8px 20px rgba(0,0,0,.25); }
-    a.button:hover { transform:translateY(-2px); box-shadow:0 12px 26px rgba(0,0,0,.35); }section { max-width:980px; margin:auto; padding:40px 24px; }
-h2 { margin-top:0; }
-.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
-.card { background:#020617; border-radius:18px; padding:22px; box-shadow:0 12px 30px rgba(0,0,0,.35); transition: transform .2s ease, box-shadow .2s ease; position:relative; overflow:hidden; }
-.card:hover { transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,.45); }
-.card img { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity:0.1; transition:opacity .3s ease; }
-.card:hover img { opacity:0.3; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sikonrmnv</title>  <style>
+    * { box-sizing: border-box; }
 
-footer { text-align:center; padding:28px; opacity:.75; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0b0b0f;
+      color: #e5e7eb;
+      overflow-x: hidden;
+    }
 
-.player { display:grid; gap:12px; justify-items:center; background:#020617; border-radius:20px; padding:22px; box-shadow:0 12px 30px rgba(0,0,0,.35); margin-bottom:40px; }
-.controls { display:flex; gap:12px; }
-.controls button { border:0; border-radius:999px; padding:10px 16px; font-weight:700; cursor:pointer; background:#22c55e; color:#020617; }
-.controls button.secondary { background:#3b82f6; color:#020617; }
-.hint { opacity:.7; font-size:14px; }
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: radial-gradient(circle at top, #1f2933, #020617);
+      padding: 32px;
+      animation: fadeIn 1.2s ease;
+    }
 
-@media (max-width:600px) { h1 { font-size:2rem; } }
+    h1 {
+      font-size: 3rem;
+      margin: 0;
+      letter-spacing: 1px;
+    }
 
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Vibra</h1>
-    <p>.</p>
-    <a class="button" href="#iletisim">İletişim</a>
+    header p {
+      max-width: 500px;
+      opacity: 0.8;
+      margin-top: 12px;
+    }
+
+    .buttons {
+      margin-top: 32px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    a.button {
+      padding: 14px 24px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 600;
+      color: white;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    a.button:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 10px 30px rgba(0,0,0,.4);
+    }
+
+    .ig {
+      background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+    }
+
+    .down {
+      background: #22c55e;
+      color: #020617;
+    }
+
+    section {
+      max-width: 900px;
+      margin: auto;
+      padding: 80px 24px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 2rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .card {
+      background: #020617;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.5);
+      transition: transform .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px;
+      opacity: .6;
+      font-size: .9rem;
+    }
+
+    audio {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style></head>
+<body>  <audio id="music" loop>
+    <source src="mentirao-slowed.mp3" type="audio/mpeg">
+  </audio>  <header>
+    <h1>sikonrmnv</h1>
+    <p>Instagram, TikTok falan gördük. Daha akıcı, daha temiz, daha az sinir bozucu bir şey deniyoruz.</p><div class="buttons">
+  <a class="button ig" href="https://instagram.com/sikonrmnv" target="_blank">Instagram</a>
+  <a class="button down" href="#" onclick="toggleMusic()">Müziği Aç / Kapat</a>
+</div>
+
   </header>  <section>
-    <h2>Ana Sayfa Player</h2>
-    <div class="player">
-      <audio id="audio" preload="metadata">
-        <source src="song.mp3" type="audio/mpeg">
-      </audio>
-      <div class="controls">
-        <button id="play">Play / Pause</button>
-        <button id="replay" class="secondary">Replay</button>
-      </div>
-      <div class="hint">.</div>
-    </div>
-  </section>  <section>
-    <h2>Hakkımda</h2>
-    <p>sikonrmnv curbandi. </p>
-  </section>  <section>
-    <h2>Ne Yapıyorum</h2>
+    <h2>Ne Var Burada</h2>
     <div class="cards">
-      <div class="card">Hizmet 1<br/>Kısa açıklama.<img src="https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif" alt="meme"></div>
-      <div class="card">Hizmet 2<br/>Kısa açıklama.<img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="meme"></div>
-      <div class="card">Hizmet 3<br/>Kısa açıklama.<img src="https://media.giphy.com/media/xT0GqeSlGSRQutH2Vy/giphy.gif" alt="meme"></div>
+      <div class="card">Akıcı geçişler<br/>Takılma yok, donma yok.</div>
+      <div class="card">Mobil odaklı<br/>PC umurumuzda değil.</div>
+      <div class="card">Uygulama hissi<br/>Site ama uygulama gibi.</div>
     </div>
-  </section>  <section id="iletisim">
-    <h2>İletişim</h2>
-    <p>Telefon: 055 750 66 82</p>
-    <p>Instagram: <a href="https://instagram.com/sikonrmnv" target="_blank" style="
-  display:inline-block;
-  padding:12px 20px;
-  background:#E1306C;
-  color:white;
-  border-radius:12px;
-  text-decoration:none;
-  font-weight:600;
-">
-  Instagram'a Git
-</a></p>
-  </section>  <footer>© 2025 sikonrmnv</footer>  <script>
-    const audio=document.getElementById('audio');
-    document.getElementById('play').onclick=()=>{if(audio.paused) audio.play(); else audio.pause();};
-    document.getElementById('replay').onclick=()=>{audio.currentTime=0; audio.play();};
+  </section>  <section>
+    <h2>Plan</h2>
+    <p>Bu yapı ileride uygulamaya da döner. Önce sade, sonra özellik. Eski usul ama ileri görüşlü.</p>
+  </section>  <footer>
+    © 2025 sikonrmnv
+  </footer>  <script>
+    const music = document.getElementById('music');
+    let playing = false;
+
+    function toggleMusic() {
+      if (!playing) {
+        music.play();
+        playing = true;
+      } else {
+        music.pause();
+        playing = false;
+      }
+    }
   </script></body>
 </html>
